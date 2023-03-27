@@ -27,4 +27,5 @@ rok = function(x){
   filter(movie2, movie2$Released_Year == x)
 }
 
+#vvnm
 przedzial_czasu = function()
