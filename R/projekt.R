@@ -23,4 +23,8 @@ movie = read.csv("imdb_top_1000.csv")
 movie2 = movie [ , c(1, 2, 3, 5, 6, 7, 8, 10, 11)]
 
 # funkcja - daty filmów
-filter(movie2, movie2$Released_Year == 2016)
+rok = function(x){
+  filter(movie2, movie2$Released_Year == x)
+}
+
+przedzial_czasu = function()
