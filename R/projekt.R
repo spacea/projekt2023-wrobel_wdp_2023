@@ -3,29 +3,36 @@ library(ggplot2)
 library(data.table)
 library(reshape2)
 
-movies_data = read.csv("movie_data.csv")
-
-titles = data.frame(movies_data$movie_title)
-genres = data.frame(movies_data$genres)
-language = data.frame(movies_data$language)
-content_rating = data.frame(movies_data$content_rating)
-year = data.frame(movies_data$title_year)
-imdb = data.frame(movies_data$imdb_score)
-
-# wyznaczanie filmu na podstawie języka
-english_movies = movies_data [movies_data$language == "English", ]
-
-# nowy plik csv próby
+# użyte pakiety
 library(stringr)
 library(dplyr)
 
 movie = read.csv("imdb_top_1000.csv")
-movie2 = movie [ , c(1, 2, 3, 5, 6, 7, 8, 10, 11)]
+movie_data = movie [ , c(1, 2, 3, 5, 6, 7, 8, 10, 11)]
 
-# funkcja - daty filmów
+# gatunek
+
+# roku
 rok = function(x){
-  filter(movie2, movie2$Released_Year == x)
+  filter(movie_data, movie_data$Released_Year == x)
 }
 
-#vvnm
-przedzial_czasu = function()
+# przedził czasu
+przedzial_czasu = function(y,z){
+  filter(movie_data, movie_data$Released_Year >= y & 
+           movie_data$Released_Year <= z)
+}
+
+# IMDB ocena
+ocena = function(x){
+  filter(movie_data, movie_data$IMDB_Rating == x)
+}
+  
+przedzial_oceny = function(y,z){
+  filter(movie_data, movie_data$Released_Year >= y & 
+           movie_data$Released_Year <= z)
+}
+
+# czas trwania filmu
+czas = movie_data$Runtime
+czas_bez_min = str_replace_all(czas, pattern = "[a-zA]+", replacement = "")
