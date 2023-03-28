@@ -36,4 +36,4 @@ przedzial_oceny = function(y,z){
 # czas trwania filmu kk
 movie_data$Runtime = str_replace_all(movie_data$Runtime, pattern = "[a-zA]+", replacement = "")
 
-movie_data$Runtime = as.integer(movie_data$Runtime)
+movie_data$Runtime = as.integer(movie_data$Runtime) #kfj
