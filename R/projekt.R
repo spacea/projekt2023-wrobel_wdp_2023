@@ -34,5 +34,4 @@ przedzial_oceny = function(y,z){
 }
 
 # czas trwania filmu kk
-czas = movie_data$Runtime
-czas_bez_min = str_replace_all(czas, pattern = "[a-zA]+", replacement = "")
+movie_data$Runtime = str_replace_all(czas, pattern = "[a-zA]+", replacement = "")
