@@ -1,3 +1,4 @@
+# pakiety które mogą się przydać
 library(recommenderlab)
 library(ggplot2)                       
 library(data.table)
@@ -12,8 +13,9 @@ movie_data = movie [ , c(1, 2, 3, 5, 6, 7, 8, 10, 11)]
 
 # gatunek
 
+
 # roku od 1920 do 2020
-rok = function(rok){
+rok_produkcji = function(rok){
   filter(movie_data, movie_data$Released_Year == rok)
 }
 
@@ -23,12 +25,12 @@ przedzial_czasu = function(poczatek_rok, koniec_rok){
            movie_data$Released_Year <= koniec_rok)
 }
 
-# IMDB ocena
-ocena = function(ocena){
+# IMDB ocena od 7.6 do 9.3
+ocena_filmu = function(ocena){
   filter(movie_data, movie_data$IMDB_Rating == ocena)
 }
 
-# IMDB przedział ocen od 7.6 do 9.3
+# IMDB przedział ocen
 przedzial_oceny = function(najnizsza, najwyzsza){
   filter(movie_data, movie_data$Released_Year >= najnizsza & 
            movie_data$Released_Year <= najwyzsza)
