@@ -1,6 +1,5 @@
 # pakiety które mogą się przydać
 library(recommenderlab)
-library(ggplot2)                       
 library(data.table)
 library(reshape2)
 
@@ -8,7 +7,7 @@ library(reshape2)
 library(stringr)
 library(dplyr)
 
-movie_data = read.csv("filmy.csv")
+movies = read.csv("movies.csv")
 
 # gatunek
 
