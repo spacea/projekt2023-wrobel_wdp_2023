@@ -8,15 +8,14 @@ library(reshape2)
 library(stringr)
 library(dplyr)
 
-movie = read.csv("imdb_top_1000.csv")
-movie_data = movie [ , c(1, 2, 3, 5, 6, 7, 8, 10, 11)]
+movie_data = read.csv("filmy.csv")
 
 # gatunek
 
-
 # roku od 1920 do 2020
 rok_produkcji = function(rok){
-  filter(movie_data, movie_data$Released_Year == rok)
+  x = filter(movie_data, movie_data$Released_Year == rok)
+  print(x, quote = TRUE, row.names = FALSE)
 }
 
 # przedził czasu
@@ -45,3 +44,4 @@ przedzial_czas_trwania = function(x, y){
   filter(movie_data, movie_data$Runtime >= x &
            movie_data$Runtime <= y)
 }
+
