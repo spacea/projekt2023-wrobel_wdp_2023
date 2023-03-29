@@ -1,8 +1,6 @@
 library(shiny)
 library(tidyverse)
 
-dataset = read.csv("dataset.csv")
-
 ui <- fluidPage(
   pageWithSidebar(
     headerPanel("Movie Explorer"),
@@ -32,6 +30,8 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
+
+dataset = read.csv("dataset.csv")
   
   output$movie_titles = renderTable({
     dataset |> 
