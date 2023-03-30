@@ -4,6 +4,7 @@ library(tidyverse) # zbiór pakietów (dplyr, forcats, ggplot2, lubridate, purrr
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
 # ui - część kody opisująca wygląd interfejsu, fluidPage - funkcja która zapewnia dopasowanie interfejsu do rozmiaru przeglądarki 
+
 ui <- fluidPage(
   titlePanel("Movie Recommender"), # tytuł aplikacji
   sidebarLayout( # dzieli strone na część lewą i prawą
