@@ -7,7 +7,7 @@ library(reshape2)
 library(stringr)
 library(dplyr)
 
-movies = read.csv("movies.csv")
+movies = read.csv("movie_data.csv")
 
 # gatunek
 
@@ -35,12 +35,13 @@ przedzial_oceny = function(najnizsza, najwyzsza){
 }
 
 # czas trwania filmu, od 45 do 321
-movies$Runtime = str_replace_all(movie_data$Runtime, pattern = "[a-zA]+", 
-                                     replacement = "")
-movies$Runtime = as.integer(movie_data$Runtime)
 
 przedzial_czas_trwania = function(x, y){
   filter(movies, movie_data$Runtime >= x &
            movie_data$Runtime <= y)
+}
+
+gatunki = function(z){
+filter(movies, movies$action == z)
 }
 
