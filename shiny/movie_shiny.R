@@ -5,7 +5,7 @@ movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
 # ui - część kody opisująca wygląd interfejsu, fluidPage - funkcja która zapewnia dopasowanie interfejsu do rozmiaru przeglądarki 
 ui <- fluidPage(
-  titlePanel("MOVIE!"), # tytuł aplikacji
+  titlePanel("Movie Recommender"), # tytuł aplikacji
   sidebarLayout( # dzieli strone na część lewą i prawą
     
     sidebarPanel( # panel po lewej stronie z suwaczkami, poniżej opisujemy co się w nim znajduje
