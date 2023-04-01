@@ -3,16 +3,6 @@ library(tidyverse)
 
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
-movie_data2 = 
-  movie_data %>% 
-  gather(genre, value, drama:western) %>% 
-  filter(value == 1) %>% 
-  select(-value)
-
-genres =  
-  movie_data2 %>% 
-  distinct(genre) %>% 
-  unlist(.)
 
 names(genres) = NULL
 
