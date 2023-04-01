@@ -45,14 +45,14 @@ ui <- fluidPage( # dostosowanie do przeglądarki
 
 server <- function(input, output) { # funkcja zakładająca dane wejściowe i wyjściowe 
   
-  output$movie_titles = renderTable({ # 
+  output$movie_titles = renderTable({ # tabela, która dostarcza dane wyjściowe po wprowadzeniu wejściowych
     m = movie_data %>% 
-      filter(between(year, input$year[1],input$year[2])) %>%
+      filter(between(year, input$year[1],input$year[2])) %>%  # filtrowanie danych pomiędzy danymi wejściowymi
       filter(between(rating, input$rating[1],input$rating[2])) %>%
       filter(between(runtime, input$runtime[1],input$runtime[2]))
     
     
-    if(!("All" %in% input$genres)) {
+    if(!("All" %in% input$genres)) { # 
       m = m %>% filter(genre %in% input$genres) 
     }
     
