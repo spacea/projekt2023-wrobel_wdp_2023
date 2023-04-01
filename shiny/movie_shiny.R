@@ -24,31 +24,34 @@ genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 
 ui = tagList(
   navbarPage("Movie Recommender",
-             tabPanel("movie filter",
-                      sidebarLayout(
-                        sidebarPanel(
-                          sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
-                          sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
-                          sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
-                          selectInput("genre", "Genres", genre_choices, selected = "All", multiple = TRUE),
-                          selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
-                          selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
-                        ),
+    tabPanel("Movie Search",
+        sidebarLayout(
+        sidebarPanel(
+          sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
+          sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
+          sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
+          helpText("Select one or more elements. Select 'All' for all elements."),
+          helpText("If you want to select one or more elements, remove 'All' option."),
+          selectInput("genre", "Genres", genre_choices, selected = "All", multiple = TRUE),
+          selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
+          selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
+        ),
                         
-                        mainPanel(
-                          tableOutput("movie_titles")
-                        ))),
+        mainPanel(
+          tableOutput("movie_titles")
+          ))),
              
-             tabPanel("movie random", 
-                      sidebarPanel(
-                        actionButton("losowy", "Random movie")
-                      ),
+    tabPanel("Random Movie", 
+        sidebarPanel(
+          helpText("Click to get 5 movies with unspecified filters."),
+          actionButton("losowy", "Get random movies")
+        ),
                       
-                      mainPanel(
-                        tableOutput("movie_random")
-                      )),
+        mainPanel(
+          tableOutput("movie_random")
+        )),
              
-             tabPanel("movie wyszukiwarka xd", "Bla bla bla")
+    tabPanel("Movie Information", "Bla bla bla")
   )
 )
 
@@ -59,13 +62,13 @@ server <- function(input, output, session) { # funkcja zakładająca dane wejśc
   
   output$movie_titles = renderTable({ # tabela, która dostarcza dane wyjściowe po wprowadzeniu wejściowych
     m = movie_data %>% 
-      filter(between(year, input$year[1],input$year[2])) %>%  # filtrowanie danych pomiędzy danymi wejściowymi
+      filter(between(year, input$year[1],input$year[2])) %>% # filtrowanie danych pomiędzy danymi wejściowymi
       filter(between(rating, input$rating[1],input$rating[2])) %>%
       filter(between(runtime, input$runtime[1],input$runtime[2]))
     
     # filtrowanie na zasadzie warunku
-    if(!("All" %in% input$genres)) { 
-      m = m %>% filter(genre %in% input$genres) 
+    if(!("All" %in% input$genre)) { 
+      m = m %>% filter(genre %in% input$genre) 
     }
     
     if (!("All" %in% input$director)) { 
@@ -81,7 +84,9 @@ server <- function(input, output, session) { # funkcja zakładająca dane wejśc
   })
   
   observeEvent(input$losowy, {
-    x = sample(random$title, 1)
+    x = random %>%
+      sample_n(5) %>% 
+      select(title, director, star, genre, year, rating, runtime) 
     output$movie_random = renderTable(x)
   })
 }
