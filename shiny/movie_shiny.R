@@ -1,13 +1,15 @@
 # install.packages("shiny")
 # install.packages("tidyverse") 
+# install.packages("shinythemes")
 
 library(shiny)
 library(tidyverse) 
-
+library(shinythemes)
 
 # wczytanie danych
 
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
+random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
 
 # obiekty, które mają wszystkie możliwe opcje do wyboru w aplikacji
@@ -20,30 +22,40 @@ genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 
 # APLIKACJA- WIDOCZNA DLA UŻYTKOWNIKA
 
-ui <- fluidPage( # dostosowanie do przeglądarki
-  titlePanel("Movie Recommender"), 
- 
-   sidebarLayout( # układ bocznej części aplikacji
-    
-    sidebarPanel( # zawartość bocznej części
-      sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
-      sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
-      sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
-      selectInput("genres", "Genres", genre_choices, selected = "All", multiple = TRUE),
-      selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
-      selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
-    ),
-    
-    mainPanel( # zawartość głównej części aplikacji
-      tableOutput("movie_titles") 
-    )
+ui = tagList(
+  navbarPage("Movie Recommender",
+             tabPanel("movie filter",
+                      sidebarLayout(
+                        sidebarPanel(
+                          sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
+                          sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
+                          sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
+                          selectInput("genre", "Genres", genre_choices, selected = "All", multiple = TRUE),
+                          selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
+                          selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
+                        ),
+                        
+                        mainPanel(
+                          tableOutput("movie_titles")
+                        ))),
+             
+             tabPanel("movie random", 
+                      sidebarPanel(
+                        actionButton("losowy", "Random movie")
+                      ),
+                      
+                      mainPanel(
+                        tableOutput("movie_random")
+                      )),
+             
+             tabPanel("movie wyszukiwarka xd", "Bla bla bla")
   )
 )
 
 
 # SERWER- NIEWIDOCZNE DLA UŻYTKOWNIKA
 
-server <- function(input, output) { # funkcja zakładająca dane wejściowe i wyjściowe 
+server <- function(input, output, session) { # funkcja zakładająca dane wejściowe i wyjściowe 
   
   output$movie_titles = renderTable({ # tabela, która dostarcza dane wyjściowe po wprowadzeniu wejściowych
     m = movie_data %>% 
@@ -66,6 +78,11 @@ server <- function(input, output) { # funkcja zakładająca dane wejściowe i wy
     
     m %>% select("title") # zmiana tytułu
     
+  })
+  
+  observeEvent(input$losowy, {
+    x = sample(random$title, 1)
+    output$movie_random = renderTable(x)
   })
 }
 
