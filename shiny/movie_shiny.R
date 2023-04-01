@@ -19,7 +19,7 @@ ui <- fluidPage(
       sliderInput(inputId = "runtime", label = "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
       selectInput("genres", "Genres", genre_choices, selected = "All", multiple = TRUE),
       selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
-      selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
+      selectInput("star","Actor",star_choices, selected = "All")
     ),
     
     mainPanel(
@@ -49,7 +49,8 @@ server <- function(input, output) {
       m <- m[grepl(input$star,m$star),]
     }
     
-    m = m[ ,2] 
+    m %>% select("title")
+    
   })
 }
 
