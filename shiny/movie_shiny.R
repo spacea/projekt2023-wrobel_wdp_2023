@@ -51,8 +51,8 @@ server <- function(input, output) { # funkcja zakładająca dane wejściowe i wy
       filter(between(rating, input$rating[1],input$rating[2])) %>%
       filter(between(runtime, input$runtime[1],input$runtime[2]))
     
-    
-    if(!("All" %in% input$genres)) { # 
+    # filtrowanie na zasadzie warunku
+    if(!("All" %in% input$genres)) { 
       m = m %>% filter(genre %in% input$genres) 
     }
     
@@ -64,9 +64,11 @@ server <- function(input, output) { # funkcja zakładająca dane wejściowe i wy
       m = m %>% filter(star %in% input$star)
     }
     
-    m %>% select("title")
+    m %>% select("title") # zmiana tytułu
     
   })
 }
+
+# załączenie aplikacji
 
 shinyApp(ui, server)
