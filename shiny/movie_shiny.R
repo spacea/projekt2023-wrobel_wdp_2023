@@ -45,7 +45,7 @@ ui <- fluidPage(
 server <- function(input, output) { 
   
   output$movie_titles = renderTable({
-    m = movie_data2 %>% 
+    m = movie_data %>% 
       filter(between(year, input$year[1],input$year[2])) %>%
       filter(between(rating, input$rating[1],input$rating[2])) %>%
       filter(between(runtime, input$runtime[1],input$runtime[2]))
