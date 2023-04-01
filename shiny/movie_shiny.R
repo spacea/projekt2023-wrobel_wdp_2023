@@ -32,6 +32,7 @@ ui <- fluidPage(
   )
 )
 
+
 server <- function(input, output) { 
   
   output$movie_titles = renderTable({
