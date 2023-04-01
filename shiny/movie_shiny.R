@@ -31,7 +31,7 @@ ui <- fluidPage( # dostosowanie do przeglądarki
       sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
       selectInput("genres", "Genres", genre_choices, selected = "All", multiple = TRUE),
       selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
-      selectInput("star","Actor",star_choices, selected = "All")
+      selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
     ),
     
     mainPanel( # zawartość głównej części aplikacji
