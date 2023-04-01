@@ -37,6 +37,7 @@ server <- function(input, output) {
       filter(between(rating, input$rating[1],input$rating[2])) %>%
       filter(between(runtime, input$runtime[1],input$runtime[2]))
     
+    
     if(!("All" %in% input$genres)) {
       m = m %>% filter(genre %in% input$genres) 
     }
@@ -49,7 +50,7 @@ server <- function(input, output) {
       m = m %>% filter(star %in% input$star)
     }
     
-    m = m[, 2] 
+    m %>% select("title")
     
   })
 }
