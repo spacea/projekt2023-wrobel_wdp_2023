@@ -14,9 +14,9 @@ ui <- fluidPage(
   sidebarLayout( 
     
     sidebarPanel( 
-      sliderInput(inputId = "year", label = "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
-      sliderInput(inputId = "rating", label = "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
-      sliderInput(inputId = "runtime", label = "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
+      sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
+      sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
+      sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
       selectInput("genres", "Genres", genre_choices, selected = "All", multiple = TRUE),
       selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
       selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
@@ -45,11 +45,12 @@ server <- function(input, output) {
       m = m %>% filter(director %in% input$director)
     }
     
-    if (input$star != "All") { 
-      m <- m[grepl(input$star,m$star),]
+    if (!("All" %in% input$star)) { 
+      m = m %>% filter(star %in% input$star)
     }
     
-    m = m[ ,2] 
+    m = m[, 2] 
+    
   })
 }
 
