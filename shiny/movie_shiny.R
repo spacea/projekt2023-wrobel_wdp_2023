@@ -1,7 +1,5 @@
 library(shiny)
-library(ggplot2movies)
 library(tidyverse) 
-library(data.table)
 
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
@@ -55,7 +53,7 @@ server <- function(input, output) {
     if(!("All" %in% input$genres)) {
       m = m %>% filter(genre %in% input$genres) 
     }
-    m = m[ ,c(2,9)] 
+    m = m[ ,2] 
   })
 }
 
