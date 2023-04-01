@@ -10,3 +10,15 @@ Ułatwia tworzenie interaktywnych aplikacji internetowych za pomocą języka R. 
 * **Tidyverse**
 
 Zestaw pakietów, który ułatwia import, przekształcanie i prezentację danych. Zawiera w sobie pakiety takie jak: **ggplot2**, **dplyr**, **tidyr**, **readr**, **purrr**, **tibble**, **stringr** czy **forcats**.
+
+Pakiety z repozytorium CRAN instalujemy przy użyciu funkcji `install.packages()`
+```
+install.packages("shiny")
+install.packages("tidyverse") 
+```
+
+Dołączenie pakietów do R następuje przy użyciu funkcji `library()`
+```
+library(shiny)
+library(tidyverse) 
+```
