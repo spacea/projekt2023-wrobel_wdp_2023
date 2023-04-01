@@ -3,14 +3,9 @@ library(tidyverse)
 
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 
-
-names(genres) = NULL
-
 director = unique(movie_data$director)
 star = unique(movie_data$star)
 
-director_choices = append(director,"All",after = 0)
-star_choices = append(star,"All", after = 0)
 
 ui <- fluidPage(
   titlePanel("Movie Recommender"), 
@@ -22,7 +17,7 @@ ui <- fluidPage(
       sliderInput(inputId = "runtime", label = "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
       selectInput("genres", "Genres", selected = "All", choices = c("All", unique(sort(movie_data$genre))), multiple = TRUE),
       
-      selectInput("director_input","Director",director_choices, selected = "All"),
+      selectInput("director_input","Director", director_choices, selected = "All"),
       selectInput("star_input","Actor",star_choices, selected = "All")
     ),
     
@@ -43,6 +38,11 @@ server <- function(input, output) {
     if(!("All" %in% input$genres)) {
       m = m %>% filter(genre %in% input$genres) 
     }
+    
+    if (input$director_input != "All") { 
+      m <- m[grepl(input$director_input,m$director),]
+    }
+    
     m = m[ ,2] 
   })
 }
