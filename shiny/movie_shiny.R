@@ -15,8 +15,8 @@ random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 # obiekty, które mają wszystkie możliwe opcje do wyboru w aplikacji
 # dodanie możliwości "All"
 
-director_choices = append((unique(movie_data$director)),"All", after = 0) 
-star_choices = append((unique(movie_data$star)),"All", after = 0)
+director_choices = append((unique(sort(movie_data$director))),"All", after = 0) 
+star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 
 
