@@ -30,8 +30,8 @@ ui = tagList(
           sliderInput("year", "Year", min =1920, max = 2020, value = c(1920, 2020),step = 1),
           sliderInput("rating", "Rating", min = 7.6, max = 9.3, value = c(7.6, 9.3),step = 0.1),
           sliderInput("runtime", "Runtime", min = 45, max = 321, value = c(45, 321),step = 1),
-          helpText("Select one or more elements. Select 'All' for all elements."),
-          helpText("If you want to select one or more elements, remove 'All' option."),
+          helpText("Select or type for one or more elements. Select 'All' for all elements."),
+          helpText("If you want to select or type for one or more elements, remove 'All' option."),
           selectInput("genre", "Genres", genre_choices, selected = "All", multiple = TRUE),
           selectInput("director","Director", director_choices, selected = "All", multiple = TRUE),
           selectInput("star","Actor",star_choices, selected = "All", multiple = TRUE)
