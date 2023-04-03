@@ -23,7 +23,7 @@ genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 
 # APLIKACJA- WIDOCZNA DLA UŻYTKOWNIKA
 
-ui = fluidPage(theme = shinytheme("cerulean"),
+ui = fluidPage(theme = shinytheme("darkly"),
   navbarPage("Movie Recommender",
     tabPanel("Movie Search",
         sidebarLayout(
