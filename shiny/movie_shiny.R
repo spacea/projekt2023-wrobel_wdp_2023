@@ -18,13 +18,13 @@ random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 director_choices = append((unique(sort(movie_data$director))),"All", after = 0) 
 star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
-
+directorc_choices = append((unique(sort(movie_data$director))), "All", after = 0)
 
 
 # APLIKACJA- WIDOCZNA DLA UŻYTKOWNIKA
 
 ui = fluidPage(theme = shinytheme("darkly"),
-  navbarPage("Movie Recommender",
+  navbarPage("Movie Recommender & More",
     tabPanel("Movie Search",
         sidebarLayout(
         sidebarPanel(
@@ -52,7 +52,15 @@ ui = fluidPage(theme = shinytheme("darkly"),
           tableOutput("movie_random")
         )),
              
-    tabPanel("Movie Information", "Bla bla bla")
+    tabPanel("Movie Information", "Bla bla bla"),
+    
+    tabPanel("Compare your favourite directors", 
+        sidebarPanel(
+          selectInput("directorc", "Directors", directorc_choices, selected = "All", multiple = TRUE),
+          radioButtons("compare", "What do you want to compare?",
+                       c("Mean rating score", "The number of movies created", "Mean length of movies created", "Years of activity"))
+       )
+    )
   )
 )
 
@@ -90,6 +98,8 @@ server <- function(input, output, session) { # funkcja zakładająca dane wejśc
       select(title, director, star, genre, year, rating, runtime) 
     output$movie_random = renderTable(x)
   })
+  
+  
 }
 
 # załączenie aplikacji
