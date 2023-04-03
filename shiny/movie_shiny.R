@@ -6,6 +6,7 @@ library(shiny)
 library(tidyverse) 
 library(shinythemes)
 
+
 # wczytanie danych
 
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
