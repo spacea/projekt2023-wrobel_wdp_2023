@@ -92,6 +92,7 @@ server <- function(input, output, session) { # funkcja zakładająca dane wejśc
     
   })
   
+  
   observeEvent(input$losowy, {
     x = random %>%
       sample_n(5) %>% 
