@@ -20,9 +20,10 @@ star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 
 
+
 # APLIKACJA- WIDOCZNA DLA UŻYTKOWNIKA
 
-ui = tagList(
+ui = fluidPage(theme = shinytheme("cerulean"),
   navbarPage("Movie Recommender",
     tabPanel("Movie Search",
         sidebarLayout(
