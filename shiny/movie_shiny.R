@@ -119,7 +119,7 @@ server <- function(input, output, session) { # funkcja zakładająca dane wejśc
                    h4("Runtime"), y$runtime, " min", br(), br(),
                    h4("Rating"), y$rating))
       }
-    })  
+    })
  
 }
 
