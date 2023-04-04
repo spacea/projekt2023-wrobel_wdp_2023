@@ -58,8 +58,6 @@ Na koniec, w celu połączenia `ui` i `serwer` używamy następującej funkcji:
 ```
 shinyApp(ui, server)
 ```
-## Napotkane problemy 
-Podczas wykonywania projektu największym wyzwaniem był wcześniejszy brak doświadczenia w pisaniu kody, który starałyśmy się przezwyciężyć szukając informacji w różnych źródłach internetowych od poradników fimowych po przeglądanie kodów innych użytkowników GitHuba.
 ### Wykonanie
 Natalia Wróbel, Aleksandra Sauer, Barbara Sadkowska
 geoinformacja rok 1
