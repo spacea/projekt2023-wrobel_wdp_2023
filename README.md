@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/tauthlex)
 
-# Movie recommender and more
+# Movie Recommender & More
 Projekt został wykonany w języku R oraz przy pomocy pakietów, które zostaną wymienione później. 
 
 Głównym celem było stworzenie aplikacji, która wyświetla propozycje filmów poprzez filtrowanie w zależności od upodobań osoby korzystającej. Ponadto użytkownik posiada opcję wylosowania pięciu przypadkowych filmów oraz zdobycia informacji o wybranym filmie. 
