@@ -3,7 +3,7 @@
 # Movie recommender and more
 Projekt został wykonany w języku R oraz przy pomocy pakietów, które zostaną wymienione później. 
 
-Głównym celem było stworzenie aplikacji, która wyświetla propozycje filmów poprzez filtrowanie w zależności od upodobań osoby korzystającej. Ponadto użytkownik posiada opcję wylosowania pięciu przypadkowych filmów, a także zdobyć informacje o wybranym filmie. 
+Głównym celem było stworzenie aplikacji, która wyświetla propozycje filmów poprzez filtrowanie w zależności od upodobań osoby korzystającej. Ponadto użytkownik posiada opcję wylosowania pięciu przypadkowych filmów oraz zdobycia informacji o wybranym filmie. 
 
 Baza danych została zaczęrpnięta z serwisu **IMDb** i zawiera 1000 najlepiej ocenianych filmów. 
 ## Wykorzystane pakiety
