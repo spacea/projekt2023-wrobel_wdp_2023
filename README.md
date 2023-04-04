@@ -30,7 +30,7 @@ Dołączenie pakietów do R następuje przy użyciu funkcji `library()`
 library(shiny)
 library(tidyverse) 
 ```
-## Funckje i obiekty w kodzie
+## Funkcje i obiekty w kodzie
 W celu wczytania danych w formie pliku CSV została użyta funkcja `read.csv`.
 ```
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
