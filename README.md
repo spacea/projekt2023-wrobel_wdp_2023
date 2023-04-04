@@ -5,7 +5,7 @@ Projekt został wykonany w języku R oraz przy pomocy pakietów, które zostaną
 
 Głównym celem było stworzenie aplikacji, która wyświetla propozycje filmów poprzez filtrowanie w zależności od upodobań osoby korzystającej. Ponadto użytkownik posiada opcję wylosowania pięciu przypadkowych filmów, a także zdobyć informacje o wybranym filmie. 
 
-Baza danych została zaczęrpnięta z serwisu **IMDb** i zawiera 1000 najlepiej najlepiej ocenianych filmów. 
+Baza danych została zaczęrpnięta z serwisu **IMDb** i zawiera 1000 najlepiej ocenianych filmów. 
 ## Wykorzystane pakiety
 * **Shiny**
 
