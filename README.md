@@ -53,3 +53,13 @@ Za to `server` zawiera kod, który odpowiedzialny za procesy niewidzoczne dla u�
 *  `filter(between(year, input$year[1],input$year[2]))` filtrowanie danych pomiędzy danymi wejściowymi
 Filtrowanie bazy filmowej następuje na zasadzie warunków. 
 * `observeEvent()` funkcja używana do reakcji na zmiany wartości wybranej zmiennej w aplikacji
+
+Na koniec, w celu połączenia `ui` i `serwer` używamy następującej funkcji:
+```
+shinyApp(ui, server)
+```
+## Napotkane problemy 
+Podczas wykonywania projektu największym wyzwaniem był wcześniejszy brak doświadczenia w pisaniu kody, który starałyśmy się przezwyciężyć szukając informacji w różnych źródłach internetowych od poradników fimowych po przeglądanie kodów innych użytkowników GitHuba.
+### Wykonanie
+Natalia Wróbel, Aleksandra Sauer, Barbara Sadkowska
+geoinformacja rok 1
