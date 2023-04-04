@@ -30,10 +30,16 @@ Dołączenie pakietów do R następuje przy użyciu funkcji `library()`
 library(shiny)
 library(tidyverse) 
 ```
-## Działanie funkcji
+## Funckje i obiekty w kodzie
 W celu wczytania danych w formie pliku CSV została użyta funkcja `read.csv`.
 ```
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 ```
-Zostały one 
+Ten sam plik został wczytany i przypisany do dwóch osobnych obiektów w celu ułatwienia działania kodu do dwóch różnych opcji.
+
+Następnym krokiem było stworzenie obiektów, które mają wszystkie możliwe opcje do wyboru w aplikacji. Przykładowo:
+```
+director_choices = append((unique(sort(movie_data$director))),"All", after = 0)
+```
+`append()` tworzy nowy wektor, który poprzez `unique()` wybiera unikalne nazwy z danej kolumny, a dzięki funkcji `sort()` elementy w wektorze są posegregowane alfabetycznie. Na powyższym przykładzie działa to w ten sposób, że w przypadku gdy reżyser nakręcił dwa filmy, to jego imię pojawi się w wektorze tylko raz, a nie dwa razy. `All` jest dodatkowym elementem wektora i przez `after = 0` umiejscawiany jest zawsze na jego początku.
