@@ -1,7 +1,11 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/tauthlex)
 
 # Movie recommender and more
-Projekt zawiera kod z użyciem języka R, który przy pomocy pakietu Shiny umożliwia zbudowanie aplikacji, która wyświetla propozycje filmów poprzez wybrane kategorie.
+Projekt został wykonany w języku R oraz przy pomocy pakietów, które zostaną wymienione później. 
+
+Głównym celem było stworzenie aplikacji, która wyświetla propozycje filmów poprzez filtrowanie w zależności od upodobań osoby korzystającej. Ponadto użytkownik posiada opcję wylosowania pięciu przypadkowych filmów, a także zdobyć informacje o wybranym filmie. 
+
+Baza danych została zaczęrpnięta z serwisu **IMDb** i zawiera 1000 najlepiej najlepiej ocenianych filmów. 
 ## Wykorzystane pakiety
 * **Shiny**
 
@@ -9,7 +13,7 @@ Ułatwia tworzenie interaktywnych aplikacji internetowych za pomocą języka R. 
 
 * **Shiny Themes**
 
-Pakiet zawierający kilka motywów z *Bootswatch*, które działają z aplikacjami Shiny.
+Pakiet zawierający kilka motywów z **Bootswatch**, które działają z aplikacjami Shiny.
 
 * **Tidyverse**
 
