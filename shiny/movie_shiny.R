@@ -1,11 +1,11 @@
 # install.packages("shiny")
 # install.packages("tidyverse") 
 # install.packages("shinythemes")
+# install.packages("shinydashboard")
 
 library(shiny)
 library(tidyverse) 
 library(shinythemes)
-
 
 # wczytanie danych
 
@@ -19,7 +19,7 @@ random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 director_choices = append((unique(sort(movie_data$director))),"All", after = 0) 
 star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
-directorc_choices = append((unique(sort(movie_data$director))), "All", after = 0)
+explorer_choices = append((unique(sort(movie_data$title))), "", after = 0)
 
 
 # APLIKACJA- WIDOCZNA DLA UŻYTKOWNIKA
@@ -53,15 +53,12 @@ ui = fluidPage(theme = shinytheme("darkly"),
           tableOutput("movie_random")
         )),
              
-    tabPanel("Movie Information", "Bla bla bla"),
-    
-    tabPanel("Compare your favourite directors", 
+    tabPanel("Movie Information",
         sidebarPanel(
-          selectInput("directorc", "Directors", directorc_choices, selected = "All", multiple = TRUE),
-          radioButtons("compare", "What do you want to compare?",
-                       c("Mean rating score", "The number of movies created", "Mean length of movies created", "Years of activity"))
-       )
-    )
+        helpText("Select or type to get information about a movie"),
+        selectInput("explorer", "Movie Title", explorer_choices, multiple = FALSE)
+        ),
+  )
   )
 )
 
