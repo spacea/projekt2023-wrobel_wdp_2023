@@ -7,6 +7,10 @@ Projekt zawiera kod z użyciem języka R, który przy pomocy pakietu Shiny umoż
 
 Ułatwia tworzenie interaktywnych aplikacji internetowych za pomocą języka R. Automatyczne wiązanie danych wejściowych i wyjściowych oraz rozbudowane, gotowe widżety umożliwiają tworzenie pięknych, responsywnych i wydajnych aplikacji przy minimalnym wysiłku.
 
+* **Shiny Themes**
+
+Pakiet zawierający kilka motywów z *Bootswatch*, które działają z aplikacjami Shiny.
+
 * **Tidyverse**
 
 Zestaw pakietów, który ułatwia import, przekształcanie i prezentację danych. Zawiera w sobie pakiety takie jak: **ggplot2**, **dplyr**, **tidyr**, **readr**, **purrr**, **tibble**, **stringr** czy **forcats**.
