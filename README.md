@@ -44,3 +44,8 @@ director_choices = append((unique(sort(movie_data$director))),"All", after = 0)
 ```
 `append()` tworzy nowy wektor, który poprzez `unique()` wybiera unikalne nazwy z danej kolumny, a dzięki funkcji `sort()` elementy w wektorze są posegregowane alfabetycznie. Na powyższym przykładzie działa to w ten sposób, że gdy reżyser nakręcił dwa filmy, to jego imię pojawi się w wektorze tylko raz, a nie dwa razy. `"All"` jest dodatkowym elementem wektora i przez `after = 0` umiejscawiany jest zawsze na jego początku.
 
+Kolejną częścią kodu jest lista `ui`, która zawiera elementy aplikacji widocznych dla użytkownika. 
+* `fluidPage` dostosowuje układ strony, aby wypełnić dostępną szerokość przeglądarki.
+* `navbarPage("Movie Recommender & More",` wyświetla tytuł aplikacji
+* `tabPanel()` tworzy zakładki w aplikacji, w nim ustalamy jakich widgetów używamy i jakie jest ich przeznaczenie
+
