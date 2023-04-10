@@ -64,6 +64,8 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
         uiOutput("movie_title")
       )
     ),
+    
+    tabPanel("Our Recommendations")
   )
 )
 
