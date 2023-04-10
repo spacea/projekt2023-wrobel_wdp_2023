@@ -15,7 +15,7 @@ star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
 title_choices = append((unique(sort(movie_data$title))), "", after = 0)
 
-ui = fluidPage(theme = shinytheme("darkly"),
+ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("darkly"),
   navbarPage("Movie Recommender",
     tabPanel("Movie Search",
       sidebarLayout(
@@ -24,7 +24,7 @@ ui = fluidPage(theme = shinytheme("darkly"),
                       value = c(1920, 2020),step = 1),
           sliderInput("rating", "Rating", min = 7.6, max = 9.3, 
                       value = c(7.6, 9.3),step = 0.1),
-          sliderInput("runtime", "Runtime", min = 45, max = 321, 
+          sliderInput("runtime", "Runtime (in minutes)", min = 45, max = 321, 
                       value = c(45, 321),step = 1),
           helpText("Select or type for one or more elements. Select 'All' for 
                    all elements."),
@@ -90,7 +90,7 @@ server <- function(input, output, session) {
       m = m %>% filter(star %in% input$star)
     }
     
-    m %>% select("title")
+    m %>% select(title, year, rating, genre, runtime)
     
   })
   
@@ -107,7 +107,9 @@ server <- function(input, output, session) {
     y = movie_data 
     if(!("" %in% input$title)) { 
       y = y %>% filter(title %in% input$title)
-      HTML(paste0( h3(y$title), br(), 
+      HTML(paste0(
+                   h3(y$title), br(), 
+                   '<img src="', y$poster, '" width="120" />',
                    h4("Overview"), y$overview, br(), br(), 
                    h4("Genres"), y$genre, br(), br(), 
                    h4("Year"), y$year, br(), br(),
