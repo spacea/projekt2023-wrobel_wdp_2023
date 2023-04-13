@@ -30,13 +30,11 @@ Dołączenie pakietów do R następuje przy użyciu funkcji `library()`
 library(shiny)
 library(tidyverse) 
 ```
-## Funckje i obiekty w kodzie
+## Funkcje i obiekty w kodzie
 W celu wczytania danych w formie pliku CSV została użyta funkcja `read.csv`.
 ```
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
-random = read.csv("movie_data.csv", stringsAsFactors = FALSE)
 ```
-Ten sam plik został wczytany i przypisany do dwóch osobnych obiektów w celu ułatwienia działania kodu do dwóch różnych opcji.
 
 Następnym krokiem było stworzenie obiektów, które mają wszystkie możliwe opcje do wyboru w aplikacji. Przykładowo:
 ```
@@ -44,3 +42,22 @@ director_choices = append((unique(sort(movie_data$director))),"All", after = 0)
 ```
 `append()` tworzy nowy wektor, który poprzez `unique()` wybiera unikalne nazwy z danej kolumny, a dzięki funkcji `sort()` elementy w wektorze są posegregowane alfabetycznie. Na powyższym przykładzie działa to w ten sposób, że gdy reżyser nakręcił dwa filmy, to jego imię pojawi się w wektorze tylko raz, a nie dwa razy. `"All"` jest dodatkowym elementem wektora i przez `after = 0` umiejscawiany jest zawsze na jego początku.
 
+Kolejną częścią kodu jest lista `ui`, która zawiera elementy aplikacji widocznych dla użytkownika. 
+* `fluidPage` dostosowuje układ strony, aby wypełnić dostępną szerokość przeglądarki.
+* `navbarPage("Movie Recommender & More",` wyświetla tytuł aplikacji
+* `tabPanel()` tworzy zakładki w aplikacji, w nim ustalamy jakich widgetów używamy i jakie jest ich przeznaczenie
+
+Za to `server` zawiera kod, który odpowiedzialny za procesy niewidzoczne dla użytkownika.
+* `function(input, output, session)` funkcja zakładająca dane wejściowe i wyjściowe
+* `output$movie_titles = renderTable()` tabela pokazująca filmy po filtracji
+*  `filter(between(year, input$year[1],input$year[2]))` filtrowanie danych pomiędzy danymi wejściowymi
+Filtrowanie bazy filmowej następuje na zasadzie warunków. 
+* `observeEvent()` funkcja używana do reakcji na zmiany wartości wybranej zmiennej w aplikacji
+
+Na koniec, w celu połączenia `ui` i `serwer` używamy następującej funkcji:
+```
+shinyApp(ui, server)
+```
+### Wykonanie
+Natalia Wróbel, Aleksandra Sauer, Barbara Sadkowska
+geoinformacja rok 1
