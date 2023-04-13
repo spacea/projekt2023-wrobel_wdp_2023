@@ -68,7 +68,7 @@ ui = fluidPage(theme = shinytheme("darkly"),
 )
 
 
-server <- function(input, output, session) {
+server <- function(input, output) {
 
 # filtrowanie filmów na podstawie: rok premiery, ocena na IMDB, czas trwania, 
 # gatunek, reżyser, aktor pierwszoplanowy 
