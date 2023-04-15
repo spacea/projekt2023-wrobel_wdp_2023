@@ -113,7 +113,10 @@ server <- function(input, output) {
   
   # funkcja losująca filmy
   observeEvent(input$random, {
-      x = sample_n(movie_data, input$movie_number[], replace = TRUE) %>% 
+      
+      x = movie_data[movie_data$genre_1 == input$genre_1, ]
+      
+      x = sample_n(x, input$movie_number[], replace = TRUE) %>% 
       select(title, genre, overview) 
     output$movie_random = renderTable(x)
   })
