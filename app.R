@@ -1,18 +1,20 @@
 # install.packages("shiny")
-# install.packages("tidyverse") 
+# install.packages("dplyr") 
 # install.packages("shinythemes")
 
 library(shiny)
-library(tidyverse) 
+library(dplyr) 
 library(shinythemes)
 
 # tabelka danych zawierająca 1000 najlepiej ocenianych filmów na IMDB
 movie_data = read.csv("movie_data.csv", stringsAsFactors = FALSE)
+recommendations = read.csv("recommendations.csv")
 
 # przygotowanie danych do filtrowania
 director_choices = append((unique(sort(movie_data$director))),"All", after = 0) 
 star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
+genre_1_choices = append((unique(sort(movie_data$genre_1))), "All", after = 0)
 title_choices = append((unique(sort(movie_data$title))), "", after = 0)
 
 ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("darkly"),
@@ -46,7 +48,9 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
                           
     tabPanel("Random Movie", 
       sidebarPanel(
-        helpText("Click to get 5 random movies."),
+        selectInput("genre_1", "Genres", genre_1_choices, selected = "All"),
+        selectInput("movie_number", "Number of random movie:", 1:10),
+        helpText("Click to get random movies."),
         actionButton("losowy", "Get random movies")
       ),
       mainPanel(
@@ -65,7 +69,18 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
       )
     ),
     
-    tabPanel("Our Recommendations")
+    tabPanel("Our Recommendations",
+      mainPanel(
+        h2("top 5"), br(),
+        h3("rekomendacje basia"),
+        tableOutput("basia"), br(),
+        h3("rekomendacje ola"),
+        tableOutput("ola"), br(),
+        h3("rekomendacje natalia"),
+        tableOutput("natalia"),
+      )
+    )
+      
   )
 )
 
@@ -104,13 +119,14 @@ server <- function(input, output) {
     output$movie_random = renderTable(x)
   })
   
+  
   # funkcja do wyszukiwania informacji od danym filmie na podstawie tytułu
   output$movie_title = renderUI({
     y = movie_data 
     if(!("" %in% input$title)) { 
       y = y %>% filter(title %in% input$title)
       HTML(paste0(
-                   h3(y$title), br(), 
+                   h3(y$title),
                    '<img src="', y$poster, '" width="120" />',
                    h4("Overview"), y$overview, br(), br(), 
                    h4("Genres"), y$genre, br(), br(), 
@@ -122,7 +138,11 @@ server <- function(input, output) {
     }
   })
   
+  output$basia = renderTable(recommendations[1:5,1:8])
+  output$ola = renderTable(recommendations[6:10,1:8])
+  output$natalia = renderTable(recommendations[11:15,1:8])
 }
+
 
 shinyApp(ui, server)
 
