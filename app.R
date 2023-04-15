@@ -49,9 +49,9 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
     tabPanel("Random Movie", 
       sidebarPanel(
         selectInput("genre_1", "Genres", genre_1_choices, selected = "All"),
-        selectInput("movie_number", "Number of random movie:", 1:10),
+        selectInput("movie_number", "Number of random movie:", 1:10, selected = 5),
         helpText("Click to get random movies."),
-        actionButton("losowy", "Get random movies")
+        actionButton("random", "Get random movies")
       ),
       mainPanel(
         tableOutput("movie_random")
@@ -111,14 +111,12 @@ server <- function(input, output) {
     
   })
   
-  # funkcja losująca 5 filmów
-  observeEvent(input$losowy, {
-    x = movie_data %>%
-      sample_n(5) %>% 
+  # funkcja losująca filmy
+  observeEvent(input$random, {
+      x = sample_n(movie_data, input$movie_number[], replace = TRUE) %>% 
       select(title, genre, overview) 
     output$movie_random = renderTable(x)
   })
-  
   
   # funkcja do wyszukiwania informacji od danym filmie na podstawie tytułu
   output$movie_title = renderUI({
