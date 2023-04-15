@@ -15,20 +15,22 @@ Ułatwia tworzenie interaktywnych aplikacji internetowych za pomocą języka R. 
 
 Pakiet zawierający kilka motywów z **Bootswatch**, które działają z aplikacjami Shiny.
 
-* **Tidyverse**
+* **Dplyr**
 
-Zestaw pakietów, który ułatwia import, przekształcanie i prezentację danych. Zawiera w sobie pakiety takie jak: **ggplot2**, **dplyr**, **tidyr**, **readr**, **purrr**, **tibble**, **stringr** czy **forcats**.
+Przy użyciu tego pakietu możemy korzystać z funkcji, które ułatwiają rozwiązywanie zadań związanych z manipulowaniem danymi. 
 
 Pakiety z repozytorium CRAN instalujemy przy użyciu funkcji `install.packages()`
 ```
 install.packages("shiny")
-install.packages("tidyverse") 
+install.packages("dplyr")
+install.packages("shinythemes")
 ```
 
 Dołączenie pakietów do R następuje przy użyciu funkcji `library()`
 ```
 library(shiny)
-library(tidyverse) 
+library(dplyr) 
+library(shinythemes) 
 ```
 ## Funkcje i obiekty w kodzie
 W celu wczytania danych w formie pliku CSV została użyta funkcja `read.csv`.
