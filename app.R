@@ -14,7 +14,7 @@ recommendations = read.csv("recommendations.csv")
 director_choices = append((unique(sort(movie_data$director))),"All", after = 0) 
 star_choices = append((unique(sort(movie_data$star))),"All", after = 0)
 genre_choices = append((unique(sort(movie_data$genre))), "All", after = 0)
-genre_1_choices = append((unique(sort(movie_data$genre_1))), "All", after = 0)
+genre_1_choices = unique(sort(movie_data$genre_1))
 title_choices = append((unique(sort(movie_data$title))), "", after = 0)
 
 ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("darkly"),
@@ -48,8 +48,9 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
                           
     tabPanel("Random Movie", 
       sidebarPanel(
-        selectInput("genre_1", "Genres", genre_1_choices, selected = "All"),
-        selectInput("movie_number", "Number of random movie:", 1:10, selected = 5),
+        helpText("Select:"),
+        selectInput("genre_1", "Genre", genre_1_choices),
+        selectInput("movie_number", "Number of random movies", 1:10, selected = 5),
         helpText("Click to get random movies."),
         actionButton("random", "Get random movies")
       ),
@@ -60,7 +61,7 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
                           
     tabPanel("Movie Information",
       sidebarPanel(
-        helpText("Select or type to get more information about a movie"),
+        helpText("Select or type to get more information about a movie."),
         selectInput("title", "Movie Title", title_choices, multiple = FALSE)
       ),
                                    
@@ -71,12 +72,12 @@ ui = fluidPage("Based on the Top 1000 Movies until 2020", theme = shinytheme("da
     
     tabPanel("Our Recommendations",
       mainPanel(
-        h2("top 5"), br(),
-        h3("rekomendacje basia"),
+        h2("Our Top 5 Movies"), br(),
+        h3("Basia's Recommendations"),
         tableOutput("basia"), br(),
-        h3("rekomendacje ola"),
+        h3("Aleksandra's Recommendations"),
         tableOutput("ola"), br(),
-        h3("rekomendacje natalia"),
+        h3("Natalia's Recommendations"),
         tableOutput("natalia"),
       )
     )
