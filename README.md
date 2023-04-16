@@ -32,7 +32,7 @@ library(shiny)
 library(dplyr) 
 library(shinythemes) 
 ```
-## Otwieranie aplikacji przez repozytorium
+## Otwieranie aplikacji bez pobierania repozytorium
 ```
 library(shiny)
 runGitHub("projekt2023-wrobel_wdp_2023", "spacea")
