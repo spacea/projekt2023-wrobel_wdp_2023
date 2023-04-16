@@ -32,6 +32,11 @@ library(shiny)
 library(dplyr) 
 library(shinythemes) 
 ```
+## Otwieranie aplikacji przez repozytorium
+```
+library(shiny)
+runGitHub("projekt2023-wrobel_wdp_2023", "spacea")
+```
 ## Funkcje i obiekty w kodzie
 W celu wczytania danych w formie pliku CSV została użyta funkcja `read.csv`.
 ```
